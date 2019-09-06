@@ -1,0 +1,332 @@
+<html>
+
+<head>
+   <!-- 中文乱码 -->
+   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+   <!-- 参考css -->
+   <link rel="stylesheet" type="text/css" href="css/index.css">
+   <link href="./static/css/app.0eb264d4e7367b563ece694ff8f658be.css" rel="stylesheet">
+   <!-- <script type="text/javascript" charset="utf-8" async="" src="./static/js/1.0de97fe393c66b61eaae.js"></script> -->
+   <style>
+      body {
+         margin: 0;
+      }
+
+      /* elementui menu */
+      .el-menu-vertical-demo:not(.el-menu--collapse) {
+         width: 200px;
+         min-height: 400px;
+      }
+   </style>
+   <!-- <link rel="stylesheet" type="text/css" href="css/normalize.css" /> -->
+   <!-- <link rel="stylesheet" type="text/css" href="css/default.css"> -->
+   <!-- <script src="//unpkg.com/3d-force-graph"></script> -->
+   <script src="//unpkg.com/three"></script><!-- 节点形状 -->
+   <script src="../../dist/3d-force-graph.js"></script>
+   <!--vue elementui-->
+   <!-- <script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script> -->
+   <script src="//unpkg.com/vue/dist/vue.min.js"></script>
+   <script src="//unpkg.com/element-ui@2.9.1/lib/index.js"></script>
+   <link rel="stylesheet" href="https://unpkg.com/element-ui@2.9.1/lib/theme-chalk/index.css" type="text/css" />
+   <!-- 自定义js -->
+   <script src="./static/js/config.js"></script>
+</head>
+
+<body>
+   <div id="app">
+      <div data-v-72781316 class="index-container">
+         <!-- 标题区 -->
+         <div data-v-72781316 class="title-container">
+            <div data-v-72781316 class="logo">
+               <img data-v-72781316 src="./static/image/logo1_t.png">
+            </div>
+            <div data-v-72781316 id="search">
+               <el-input v-model="searchText" placeholder="搜索网络节点" @keyup.enter.native="searchNode" size="small"
+                  clearable>
+               </el-input>
+            </div>
+         </div>
+         <div data-v-72781316 class="visulization-container">
+            <!-- 左侧菜单区 -->
+            <div data-v-72781316 class="src-container">
+               <ul data-v-72781316="">
+                  <li data-v-72781316="" v-for="sys in systems" :class="{active:sys==activeSystem}" @click="systemMenuClick(sys)">
+                     {{sys.name}}
+                  </li>
+               </ul>
+            </div>
+            <!-- 下部菜单区 -->
+            <div data-v-72781316 class="middle-container">
+               <div data-v-72781316 class="main-visualization">
+                  <div id="starrysky" class="htmleaf-container">
+                     <div id="3d-graph" class="htmleaf-container"></div>
+                     <!-- 信息框 -->
+                     <div v-show="infoBox.show" class="infobox">
+                        <span class="close" onclick="vm.unHighlight()"></span>
+                        <span>标题信息</span>
+                        <el-divider></el-divider>
+                        <span>{{infoBox.content}}</span>
+                        <el-divider></el-divider>
+                        <el-row>
+                           <el-button type="text" :disabled="!canNodeOpen()" @click="openNode">展开节点</el-button>
+                           <el-button type="text" :disabled="!canNodeClose()" @click="closeNode">关闭节点</el-button>
+                        </el-row>
+                     </div>
+                  </div>
+               </div>
+               <ul data-v-72781316 class="menu-container">
+                  <li data-v-72781316="" v-for="flt in filters" :class="{active:flt==activeFilter}" :style="{background:flt.bgColor}"
+                     @click="filterMenuClick(flt)">
+                     {{flt.name}}
+                  </li>
+               </ul>
+            </div>
+         </div>
+      </div>
+   </div>
+   <!-- vue -->
+   <script type="text/javascript">
+      let highlightNodes = [];// 高亮点
+      let highlightLinks = [];// 高亮边
+      let highlightColor = '#ffffff';// 高亮色
+      let ignoreColor = '#111111';// 忽略色
+      var vm = new Vue({
+         el: '#app',
+         data: {
+            systems: g_Systems,// 左侧菜单
+            activeSystem: g_Systems[0],// 左侧菜单活动项
+            filters: g_Filters,// 底部菜单
+            activeFilter: null,// 底部菜单活动项
+            graph: null,// 3D图形
+            searchText: '',// 查询字符串
+            infoBox: { show: false, content: "hello" },// 是否显示信息框
+            initData: null,// 初始数据
+            filtData: null,// 过滤数据
+         },
+         mounted: function () {
+            fetch(this.activeSystem.value).then((r) => {
+               return r.json();
+            }).then((json) => {
+               this.initData = json;
+               this.filtData = new Object();
+               this.filtData.nodes = json.nodes.filter(i => i.level < 2);
+               this.filtData.links = json.links.filter(i => this.filtData.nodes.find(j => j.id == i.source) && this.filtData.nodes.find(j => j.id == i.target));
+               //console.log(this.initData.nodes.length + "," + this.filtData.nodes.length);
+               this.initScene(this.filtData);
+            });
+         },
+         methods: {
+            // 节点是否可打开
+            canNodeOpen: function () {
+               return true;
+               let node = this.infoBox.node;
+               if (!node) return false;
+               let nodeId = node.id;
+               if (node.nodes) return false;
+               return null != this.initData.links.find(l => l.target == nodeId || l.target.id == nodeId);
+            },
+            // 节点是否可关闭
+            canNodeClose: function () {
+               return true;
+               let node = this.infoBox.node;
+               if (!node) return false;
+               return node.nodes != null;
+            },
+            // 初始化场景
+            initScene: function (json) {
+               let elem = document.getElementById('3d-graph');
+               this.graph = ForceGraph3D()(elem)
+                  .graphData(json)
+                  // .jsonUrl(this.activeSystem.value)
+                  .enableNodeDrag(false)
+                  // .nodeLabel(node => "<div><table border=1><tr><td>hello</td></tr><tr><td>world</td></tr></table></div>")
+                  .nodeLabel(node => `<div>${node.user}: ${node.description}</div>`)
+                  .linkWidth(link => highlightLinks.indexOf(link) !== -1 ? 2 : 1)
+                  .linkDirectionalParticles(link => highlightLinks.indexOf(link) !== -1 ? 2 : 0)
+                  .linkDirectionalParticleWidth(2)
+                  .nodeColor(node => {
+                     // 高亮
+                     if (highlightNodes.indexOf(node) !== -1) {
+                        return highlightColor;
+                     } else {
+                        if (this.activeFilter != null) {
+                           // 非当前类型
+                           if (this.activeFilter.value != node.type) {
+                              return ignoreColor;
+                           }
+                        }
+                     }
+                     let flt = this.filters.find(i => i.value == node.type);
+                     return flt ? flt.bgColor : null;
+                  })
+                  .onNodeClick(node => {
+                     if (this.isNodeIgnore(node)) return;
+                     this.focusNode(node);
+                     this.highlightNode(node);
+                  })
+                  .nodeThreeObject(node => new THREE.Mesh(
+                     [
+                        new THREE.BoxGeometry(7, 7, 7),
+                        new THREE.ConeGeometry(7, 7),
+                        new THREE.CylinderGeometry(7, 7, 7),
+                        new THREE.DodecahedronGeometry(7),
+                        new THREE.SphereGeometry(7),
+                        new THREE.TorusGeometry(7, 2),
+                        new THREE.TorusKnotGeometry(7, 2)
+                     ][node.level % 7],
+                     new THREE.MeshLambertMaterial({
+                        color: this.getNodeColor(node),//Math.round(Math.random() * Math.pow(2, 24)),
+                        transparent: true,
+                        opacity: 0.75
+                     })
+                  ))
+            },
+            // 清空节点
+            clearNode: function (node) {
+               delete node.link;
+               delete node.nodes;
+               // delete n.__threeObj;
+            },
+            // 打开节点
+            openNode: function () {
+               let nodeId = this.infoBox.node.id;
+               const { nodes, links } = this.graph.graphData();
+               let refLinks = this.initData.links.filter(l => l.target == nodeId || l.target.id == nodeId);
+               let refNodes = this.initData.nodes.filter(n => refLinks.find(l => l.source == n.id || l.source.id == n.id));
+               this.graph.graphData({
+                  nodes: [...nodes, ...refNodes],
+                  links: [...links, ...refLinks]
+               });
+            },
+            // 关闭节点
+            closeNode: function () {
+               // 判断是否子节点
+               let isChildNode = function (parent, child) {
+                  if (parent.id == child.id) return false;
+                  if (parent.nodes) {
+                     for (let i = 0; i < parent.nodes.length; i++) {
+                        if (parent.nodes[i].id == child.id || isChildNode(parent.nodes[i], child)) {
+                           return true;
+                        }
+                     }
+                  }
+                  return false;
+               }
+               // 查询删除节点和边
+               let node = this.infoBox.node;
+               let { nodes, links } = this.graph.graphData();
+               let rmNodes = nodes.filter(n => isChildNode(node, n));
+               // rmNodes.forEach(n => {
+               //    this.clearNode(n);
+               // });
+               nodes = nodes.filter(n => !rmNodes.find(r => r.id == n.id));
+               links = links.filter(l => !rmNodes.find(r => r.id == l.source.id));
+               this.graph.graphData({ nodes, links });
+               this.unHighlight();
+               this.clearNode(node);
+            },
+            // 获取节点颜色
+            getNodeColor: function (node) {
+               // 高亮
+               if (highlightNodes.indexOf(node) !== -1) {
+                  return highlightColor;
+               } else {
+                  if (this.activeFilter != null) {
+                     // 非当前类型
+                     if (this.activeFilter.value != node.type) {
+                        return ignoreColor;
+                     }
+                  }
+               }
+               let flt = this.filters.find(i => i.value == node.type);
+               return flt ? flt.bgColor : null;
+            },
+            // 单击左侧菜单
+            systemMenuClick: function (sys) {
+               if (this.activeSystem == sys) return;
+               this.activeSystem = sys;
+               if (sys.value) {
+                  this.graph.jsonUrl(sys.value);
+                  this.activeFilter = null;
+               }
+            },
+            // 单击底部菜单
+            filterMenuClick: function (val) {
+               this.activeFilter = this.activeFilter == val ? null : val;
+               this.updateGeometries();
+            },
+            // 更新3D模型
+            updateGeometries: function () {
+               this.graph.nodeRelSize(4); // trigger update of 3d objects in scene
+            },
+            // 点是否忽略
+            isNodeIgnore: function (node) {
+               return this.activeFilter && this.activeFilter.value != node.type;
+            },
+            // 查询网络节点
+            searchNode: function () {
+               let node = this.graph.graphData().nodes.find(node => {
+                  if (this.isNodeIgnore(node)) return false;
+                  return node.user.indexOf(this.searchText) >= 0
+               });
+               if (node) {
+                  this.focusNode(node);
+                  this.highlightNode(node);
+               } else {
+                  this.$message({
+                     message: '没有找到相关节点！',
+                     type: 'warning',
+                     showClose: true
+                  });
+               }
+            },
+            // 聚焦节点
+            focusNode: function (node) {
+               const distance = 100;
+               const distRatio = 1 + distance / Math.hypot(node.x, node.y, node.z);
+               this.graph.cameraPosition(
+                  { x: node.x * distRatio, y: node.y * distRatio, z: node.z * distRatio }, // new position
+                  node, // lookAt ({ x, y, z })
+                  3000  // ms transition duration
+               );
+            },
+            // 高亮节点
+            highlightNode: function (node) {
+               this.unHighlight();
+               if (node.link != null) {
+                  highlightLinks.push(node.link);
+               }
+               if (node.nodes != null) {
+                  node.nodes.forEach(n => {
+                     highlightLinks.push(n.link);
+                  });
+               }
+               this.updateGeometries();
+               // 显示节点信息
+               this.infoBox.node = node;
+               this.infoBox.content = `${node.user}: ${node.description}`;
+               this.infoBox.show = true;
+            },
+            // 清空高亮
+            unHighlight: function () {
+               highlightNodes.length = 0;
+               highlightLinks.length = 0;
+               this.updateGeometries();
+               this.infoBox.show = false;
+            }
+         }
+      });
+   </script>
+   <!-- 星空背景 -->
+   <script src="dist/jquery-2.1.0.min.js"></script>
+   <script src="dist/jquery-starfield.js"></script>
+   <script>
+      $('#starrysky').starfield({
+         starDensity: 0.5,
+         mouseScale: 0.1,
+         seedMovement: true
+      });
+   </script>
+</body>
+
+</html>

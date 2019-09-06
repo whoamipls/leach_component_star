@@ -1,0 +1,794 @@
+{
+   "nodes": [
+      {
+         "id": 0,
+         "user": "user0",
+         "description": "user0",
+         "type": 0,
+         "level": 0
+      },
+      {
+         "id": 1,
+         "user": "user1",
+         "description": "user1",
+         "type": 0,
+         "level": 1
+      },
+      {
+         "id": 2,
+         "user": "user2",
+         "description": "user2",
+         "type": 1,
+         "level": 1
+      },
+      {
+         "id": 3,
+         "user": "user3",
+         "description": "user3",
+         "type": 0,
+         "level": 2
+      },
+      {
+         "id": 4,
+         "user": "user4",
+         "description": "user4",
+         "type": 0,
+         "level": 3
+      },
+      {
+         "id": 5,
+         "user": "user5",
+         "description": "user5",
+         "type": 1,
+         "level": 3
+      },
+      {
+         "id": 6,
+         "user": "user6",
+         "description": "user6",
+         "type": 2,
+         "level": 3
+      },
+      {
+         "id": 7,
+         "user": "user7",
+         "description": "user7",
+         "type": 3,
+         "level": 3
+      },
+      {
+         "id": 8,
+         "user": "user8",
+         "description": "user8",
+         "type": 1,
+         "level": 2
+      },
+      {
+         "id": 9,
+         "user": "user9",
+         "description": "user9",
+         "type": 2,
+         "level": 2
+      },
+      {
+         "id": 10,
+         "user": "user10",
+         "description": "user10",
+         "type": 0,
+         "level": 3
+      },
+      {
+         "id": 11,
+         "user": "user11",
+         "description": "user11",
+         "type": 1,
+         "level": 3
+      },
+      {
+         "id": 12,
+         "user": "user12",
+         "description": "user12",
+         "type": 2,
+         "level": 3
+      },
+      {
+         "id": 13,
+         "user": "user13",
+         "description": "user13",
+         "type": 3,
+         "level": 3
+      },
+      {
+         "id": 14,
+         "user": "user14",
+         "description": "user14",
+         "type": 4,
+         "level": 3
+      },
+      {
+         "id": 15,
+         "user": "user15",
+         "description": "user15",
+         "type": 3,
+         "level": 2
+      },
+      {
+         "id": 16,
+         "user": "user16",
+         "description": "user16",
+         "type": 0,
+         "level": 3
+      },
+      {
+         "id": 17,
+         "user": "user17",
+         "description": "user17",
+         "type": 1,
+         "level": 3
+      },
+      {
+         "id": 18,
+         "user": "user18",
+         "description": "user18",
+         "type": 2,
+         "level": 3
+      },
+      {
+         "id": 19,
+         "user": "user19",
+         "description": "user19",
+         "type": 3,
+         "level": 3
+      },
+      {
+         "id": 20,
+         "user": "user20",
+         "description": "user20",
+         "type": 4,
+         "level": 3
+      },
+      {
+         "id": 21,
+         "user": "user21",
+         "description": "user21",
+         "type": 0,
+         "level": 3
+      },
+      {
+         "id": 22,
+         "user": "user22",
+         "description": "user22",
+         "type": 4,
+         "level": 2
+      },
+      {
+         "id": 23,
+         "user": "user23",
+         "description": "user23",
+         "type": 2,
+         "level": 1
+      },
+      {
+         "id": 24,
+         "user": "user24",
+         "description": "user24",
+         "type": 0,
+         "level": 2
+      },
+      {
+         "id": 25,
+         "user": "user25",
+         "description": "user25",
+         "type": 3,
+         "level": 1
+      },
+      {
+         "id": 26,
+         "user": "user26",
+         "description": "user26",
+         "type": 0,
+         "level": 2
+      },
+      {
+         "id": 27,
+         "user": "user27",
+         "description": "user27",
+         "type": 0,
+         "level": 3
+      },
+      {
+         "id": 28,
+         "user": "user28",
+         "description": "user28",
+         "type": 1,
+         "level": 3
+      },
+      {
+         "id": 29,
+         "user": "user29",
+         "description": "user29",
+         "type": 2,
+         "level": 3
+      },
+      {
+         "id": 30,
+         "user": "user30",
+         "description": "user30",
+         "type": 3,
+         "level": 3
+      },
+      {
+         "id": 31,
+         "user": "user31",
+         "description": "user31",
+         "type": 4,
+         "level": 3
+      },
+      {
+         "id": 32,
+         "user": "user32",
+         "description": "user32",
+         "type": 0,
+         "level": 3
+      },
+      {
+         "id": 33,
+         "user": "user33",
+         "description": "user33",
+         "type": 1,
+         "level": 3
+      },
+      {
+         "id": 34,
+         "user": "user34",
+         "description": "user34",
+         "type": 2,
+         "level": 3
+      },
+      {
+         "id": 35,
+         "user": "user35",
+         "description": "user35",
+         "type": 3,
+         "level": 3
+      },
+      {
+         "id": 36,
+         "user": "user36",
+         "description": "user36",
+         "type": 1,
+         "level": 2
+      },
+      {
+         "id": 37,
+         "user": "user37",
+         "description": "user37",
+         "type": 0,
+         "level": 3
+      },
+      {
+         "id": 38,
+         "user": "user38",
+         "description": "user38",
+         "type": 1,
+         "level": 3
+      },
+      {
+         "id": 39,
+         "user": "user39",
+         "description": "user39",
+         "type": 2,
+         "level": 3
+      },
+      {
+         "id": 40,
+         "user": "user40",
+         "description": "user40",
+         "type": 3,
+         "level": 3
+      },
+      {
+         "id": 41,
+         "user": "user41",
+         "description": "user41",
+         "type": 4,
+         "level": 3
+      },
+      {
+         "id": 42,
+         "user": "user42",
+         "description": "user42",
+         "type": 0,
+         "level": 3
+      },
+      {
+         "id": 43,
+         "user": "user43",
+         "description": "user43",
+         "type": 1,
+         "level": 3
+      },
+      {
+         "id": 44,
+         "user": "user44",
+         "description": "user44",
+         "type": 2,
+         "level": 3
+      },
+      {
+         "id": 45,
+         "user": "user45",
+         "description": "user45",
+         "type": 3,
+         "level": 3
+      },
+      {
+         "id": 46,
+         "user": "user46",
+         "description": "user46",
+         "type": 2,
+         "level": 2
+      },
+      {
+         "id": 47,
+         "user": "user47",
+         "description": "user47",
+         "type": 0,
+         "level": 3
+      },
+      {
+         "id": 48,
+         "user": "user48",
+         "description": "user48",
+         "type": 1,
+         "level": 3
+      },
+      {
+         "id": 49,
+         "user": "user49",
+         "description": "user49",
+         "type": 2,
+         "level": 3
+      },
+      {
+         "id": 50,
+         "user": "user50",
+         "description": "user50",
+         "type": 3,
+         "level": 3
+      },
+      {
+         "id": 51,
+         "user": "user51",
+         "description": "user51",
+         "type": 3,
+         "level": 2
+      },
+      {
+         "id": 52,
+         "user": "user52",
+         "description": "user52",
+         "type": 0,
+         "level": 3
+      },
+      {
+         "id": 53,
+         "user": "user53",
+         "description": "user53",
+         "type": 1,
+         "level": 3
+      },
+      {
+         "id": 54,
+         "user": "user54",
+         "description": "user54",
+         "type": 2,
+         "level": 3
+      },
+      {
+         "id": 55,
+         "user": "user55",
+         "description": "user55",
+         "type": 3,
+         "level": 3
+      },
+      {
+         "id": 56,
+         "user": "user56",
+         "description": "user56",
+         "type": 4,
+         "level": 3
+      },
+      {
+         "id": 57,
+         "user": "user57",
+         "description": "user57",
+         "type": 0,
+         "level": 3
+      },
+      {
+         "id": 58,
+         "user": "user58",
+         "description": "user58",
+         "type": 4,
+         "level": 2
+      },
+      {
+         "id": 59,
+         "user": "user59",
+         "description": "user59",
+         "type": 0,
+         "level": 3
+      },
+      {
+         "id": 60,
+         "user": "user60",
+         "description": "user60",
+         "type": 1,
+         "level": 3
+      },
+      {
+         "id": 61,
+         "user": "user61",
+         "description": "user61",
+         "type": 2,
+         "level": 3
+      },
+      {
+         "id": 62,
+         "user": "user62",
+         "description": "user62",
+         "type": 3,
+         "level": 3
+      },
+      {
+         "id": 63,
+         "user": "user63",
+         "description": "user63",
+         "type": 4,
+         "level": 3
+      },
+      {
+         "id": 64,
+         "user": "user64",
+         "description": "user64",
+         "type": 0,
+         "level": 3
+      },
+      {
+         "id": 65,
+         "user": "user65",
+         "description": "user65",
+         "type": 0,
+         "level": 2
+      },
+      {
+         "id": 66,
+         "user": "user66",
+         "description": "user66",
+         "type": 0,
+         "level": 3
+      },
+      {
+         "id": 67,
+         "user": "user67",
+         "description": "user67",
+         "type": 1,
+         "level": 3
+      },
+      {
+         "id": 68,
+         "user": "user68",
+         "description": "user68",
+         "type": 2,
+         "level": 3
+      },
+      {
+         "id": 69,
+         "user": "user69",
+         "description": "user69",
+         "type": 3,
+         "level": 3
+      },
+      {
+         "id": 70,
+         "user": "user70",
+         "description": "user70",
+         "type": 4,
+         "level": 3
+      },
+      {
+         "id": 71,
+         "user": "user71",
+         "description": "user71",
+         "type": 1,
+         "level": 2
+      }
+   ],
+   "links": [
+      {
+         "source": 1,
+         "target": 0
+      },
+      {
+         "source": 2,
+         "target": 0
+      },
+      {
+         "source": 3,
+         "target": 2
+      },
+      {
+         "source": 4,
+         "target": 3
+      },
+      {
+         "source": 5,
+         "target": 3
+      },
+      {
+         "source": 6,
+         "target": 3
+      },
+      {
+         "source": 7,
+         "target": 3
+      },
+      {
+         "source": 8,
+         "target": 2
+      },
+      {
+         "source": 9,
+         "target": 2
+      },
+      {
+         "source": 10,
+         "target": 9
+      },
+      {
+         "source": 11,
+         "target": 9
+      },
+      {
+         "source": 12,
+         "target": 9
+      },
+      {
+         "source": 13,
+         "target": 9
+      },
+      {
+         "source": 14,
+         "target": 9
+      },
+      {
+         "source": 15,
+         "target": 2
+      },
+      {
+         "source": 16,
+         "target": 15
+      },
+      {
+         "source": 17,
+         "target": 15
+      },
+      {
+         "source": 18,
+         "target": 15
+      },
+      {
+         "source": 19,
+         "target": 15
+      },
+      {
+         "source": 20,
+         "target": 15
+      },
+      {
+         "source": 21,
+         "target": 15
+      },
+      {
+         "source": 22,
+         "target": 2
+      },
+      {
+         "source": 23,
+         "target": 0
+      },
+      {
+         "source": 24,
+         "target": 23
+      },
+      {
+         "source": 25,
+         "target": 0
+      },
+      {
+         "source": 26,
+         "target": 25
+      },
+      {
+         "source": 27,
+         "target": 26
+      },
+      {
+         "source": 28,
+         "target": 26
+      },
+      {
+         "source": 29,
+         "target": 26
+      },
+      {
+         "source": 30,
+         "target": 26
+      },
+      {
+         "source": 31,
+         "target": 26
+      },
+      {
+         "source": 32,
+         "target": 26
+      },
+      {
+         "source": 33,
+         "target": 26
+      },
+      {
+         "source": 34,
+         "target": 26
+      },
+      {
+         "source": 35,
+         "target": 26
+      },
+      {
+         "source": 36,
+         "target": 25
+      },
+      {
+         "source": 37,
+         "target": 36
+      },
+      {
+         "source": 38,
+         "target": 36
+      },
+      {
+         "source": 39,
+         "target": 36
+      },
+      {
+         "source": 40,
+         "target": 36
+      },
+      {
+         "source": 41,
+         "target": 36
+      },
+      {
+         "source": 42,
+         "target": 36
+      },
+      {
+         "source": 43,
+         "target": 36
+      },
+      {
+         "source": 44,
+         "target": 36
+      },
+      {
+         "source": 45,
+         "target": 36
+      },
+      {
+         "source": 46,
+         "target": 25
+      },
+      {
+         "source": 47,
+         "target": 46
+      },
+      {
+         "source": 48,
+         "target": 46
+      },
+      {
+         "source": 49,
+         "target": 46
+      },
+      {
+         "source": 50,
+         "target": 46
+      },
+      {
+         "source": 51,
+         "target": 25
+      },
+      {
+         "source": 52,
+         "target": 51
+      },
+      {
+         "source": 53,
+         "target": 51
+      },
+      {
+         "source": 54,
+         "target": 51
+      },
+      {
+         "source": 55,
+         "target": 51
+      },
+      {
+         "source": 56,
+         "target": 51
+      },
+      {
+         "source": 57,
+         "target": 51
+      },
+      {
+         "source": 58,
+         "target": 25
+      },
+      {
+         "source": 59,
+         "target": 58
+      },
+      {
+         "source": 60,
+         "target": 58
+      },
+      {
+         "source": 61,
+         "target": 58
+      },
+      {
+         "source": 62,
+         "target": 58
+      },
+      {
+         "source": 63,
+         "target": 58
+      },
+      {
+         "source": 64,
+         "target": 58
+      },
+      {
+         "source": 65,
+         "target": 25
+      },
+      {
+         "source": 66,
+         "target": 65
+      },
+      {
+         "source": 67,
+         "target": 65
+      },
+      {
+         "source": 68,
+         "target": 65
+      },
+      {
+         "source": 69,
+         "target": 65
+      },
+      {
+         "source": 70,
+         "target": 65
+      },
+      {
+         "source": 71,
+         "target": 25
+      }
+   ]
+}
