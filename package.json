@@ -40,7 +40,7 @@
   "dependencies": {
     "accessor-fn": "^1.2.2",
     "kapsule": "^1.10.0",
-    "three": "^0.104.0",
+    "three": "^0.125.0",
     "three-dragcontrols": "^0.88.2",
     "three-forcegraph": "^1.21.0",
     "three-render-objects": "^1.4.5"
